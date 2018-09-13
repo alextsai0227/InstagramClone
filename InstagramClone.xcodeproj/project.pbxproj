@@ -7,21 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03039F54214A9F7600E358E0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03039F53214A9F7600E358E0 /* SignUpViewController.swift */; };
+		03039F56214AAF4400E358E0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03039F55214AAF4400E358E0 /* HomeViewController.swift */; };
+		03039F58214AAF5100E358E0 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03039F57214AAF5100E358E0 /* DiscoveryViewController.swift */; };
+		03039F5A214AAF5A00E358E0 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03039F59214AAF5A00E358E0 /* CameraViewController.swift */; };
+		03039F5C214AAF6500E358E0 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03039F5B214AAF6500E358E0 /* ActivityViewController.swift */; };
+		03039F5E214AAF7B00E358E0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03039F5D214AAF7B00E358E0 /* ProfileViewController.swift */; };
 		03F7948B214A989800D36648 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F7948A214A989800D36648 /* AppDelegate.swift */; };
-		03F7948D214A989800D36648 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F7948C214A989800D36648 /* ViewController.swift */; };
-		03F79490214A989800D36648 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F7948E214A989800D36648 /* Main.storyboard */; };
 		03F79492214A989D00D36648 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03F79491214A989D00D36648 /* Assets.xcassets */; };
 		03F79495214A989D00D36648 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F79493214A989D00D36648 /* LaunchScreen.storyboard */; };
+		03F7949D214A99AC00D36648 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F7949C214A99AC00D36648 /* Start.storyboard */; };
+		03F7949F214A9BA000D36648 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F7949E214A9BA000D36648 /* SignInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03039F53214A9F7600E358E0 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		03039F55214AAF4400E358E0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		03039F57214AAF5100E358E0 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
+		03039F59214AAF5A00E358E0 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		03039F5B214AAF6500E358E0 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		03039F5D214AAF7B00E358E0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		03F79487214A989800D36648 /* InstagramClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03F7948A214A989800D36648 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		03F7948C214A989800D36648 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		03F7948F214A989800D36648 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		03F79491214A989D00D36648 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03F79494214A989D00D36648 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03F79496214A989D00D36648 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03F7949C214A99AC00D36648 /* Start.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
+		03F7949E214A9BA000D36648 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,9 +67,15 @@
 			isa = PBXGroup;
 			children = (
 				03F7948A214A989800D36648 /* AppDelegate.swift */,
-				03F7948C214A989800D36648 /* ViewController.swift */,
-				03F7948E214A989800D36648 /* Main.storyboard */,
+				03F7949E214A9BA000D36648 /* SignInViewController.swift */,
+				03039F53214A9F7600E358E0 /* SignUpViewController.swift */,
+				03039F55214AAF4400E358E0 /* HomeViewController.swift */,
+				03039F57214AAF5100E358E0 /* DiscoveryViewController.swift */,
+				03039F59214AAF5A00E358E0 /* CameraViewController.swift */,
+				03039F5B214AAF6500E358E0 /* ActivityViewController.swift */,
+				03039F5D214AAF7B00E358E0 /* ProfileViewController.swift */,
 				03F79491214A989D00D36648 /* Assets.xcassets */,
+				03F7949C214A99AC00D36648 /* Start.storyboard */,
 				03F79493214A989D00D36648 /* LaunchScreen.storyboard */,
 				03F79496214A989D00D36648 /* Info.plist */,
 			);
@@ -124,7 +142,7 @@
 			files = (
 				03F79495214A989D00D36648 /* LaunchScreen.storyboard in Resources */,
 				03F79492214A989D00D36648 /* Assets.xcassets in Resources */,
-				03F79490214A989800D36648 /* Main.storyboard in Resources */,
+				03F7949D214A99AC00D36648 /* Start.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,22 +153,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03F7948D214A989800D36648 /* ViewController.swift in Sources */,
+				03039F54214A9F7600E358E0 /* SignUpViewController.swift in Sources */,
 				03F7948B214A989800D36648 /* AppDelegate.swift in Sources */,
+				03F7949F214A9BA000D36648 /* SignInViewController.swift in Sources */,
+				03039F56214AAF4400E358E0 /* HomeViewController.swift in Sources */,
+				03039F5C214AAF6500E358E0 /* ActivityViewController.swift in Sources */,
+				03039F58214AAF5100E358E0 /* DiscoveryViewController.swift in Sources */,
+				03039F5E214AAF7B00E358E0 /* ProfileViewController.swift in Sources */,
+				03039F5A214AAF5A00E358E0 /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		03F7948E214A989800D36648 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				03F7948F214A989800D36648 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		03F79493214A989D00D36648 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -280,7 +296,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = InstagramClone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -288,6 +305,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = alex.tsai.InstagramClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -297,7 +315,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = InstagramClone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -305,6 +324,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = alex.tsai.InstagramClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
