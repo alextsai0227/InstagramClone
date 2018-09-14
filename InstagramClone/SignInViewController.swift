@@ -22,6 +22,13 @@ class SignInViewController: UIViewController {
         handleTextfield()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if FIRAuth.auth()?.currentUser != nil {
+            self.performSegue(withIdentifier: "singInToTabBarVC", sender: nil)
+        }
+    }
+    
     func handleTextfield(){
         emailTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: UIControlEvents.editingChanged)
         passwordTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: UIControlEvents.editingChanged)
