@@ -49,7 +49,7 @@
                                             <color key="titleColor" white="0.0" alpha="0.59056613869863017" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="IXP-9r-QcH" kind="presentation" id="r7u-90-7tU"/>
+                                            <action selector="loginBtn_TouchUpInside:" destination="LNc-UH-f2g" eventType="touchUpInside" id="6cL-b1-uvy"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -89,6 +89,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kdR-XE-XlG"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="cOf-x1-MME" id="yzI-WW-Vpg"/>
+                        <outlet property="loginBtn" destination="jBQ-9E-Acl" id="Yi6-GO-1yj"/>
+                        <outlet property="passwordTextField" destination="Mbu-rw-dLK" id="ITU-s8-9wT"/>
+                        <segue destination="IXP-9r-QcH" kind="presentation" identifier="singInToTabBarVC" id="wsF-WB-JSz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vrX-eR-zIf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -142,7 +148,7 @@
                                             <color key="titleColor" white="0.0" alpha="0.59056613869999997" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="IXP-9r-QcH" kind="presentation" id="shp-rM-J3m"/>
+                                            <action selector="signUpBtn_TouchUpInside:" destination="rQH-ni-Chk" eventType="touchUpInside" id="r6v-oQ-66u"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -160,10 +166,10 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar-1577909_960_720" translatesAutoresizingMaskIntoConstraints="NO" id="eJE-Ox-d01">
-                                <rect key="frame" x="122" y="102.66666666666669" width="131" height="111"/>
+                                <rect key="frame" x="137.66666666666666" y="113.66666666666669" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="111" id="G0t-bT-A1H"/>
-                                    <constraint firstAttribute="width" constant="131" id="mKE-01-yeP"/>
+                                    <constraint firstAttribute="height" constant="100" id="G0t-bT-A1H"/>
+                                    <constraint firstAttribute="width" constant="100" id="mKE-01-yeP"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -182,10 +188,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7HD-a0-Mwi"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="Icp-Le-uSb" id="zZ7-XY-SI0"/>
+                        <outlet property="passwordTextField" destination="eTL-c0-kZ4" id="e56-TP-nCA"/>
+                        <outlet property="profileImage" destination="eJE-Ox-d01" id="KDO-4Z-DCQ"/>
+                        <outlet property="signUpBtn" destination="Dy4-xU-gET" id="LFt-Ol-YSP"/>
+                        <outlet property="userNameTextFIeld" destination="ppN-3V-GJx" id="FTh-sW-9d1"/>
+                        <segue destination="IXP-9r-QcH" kind="presentation" identifier="singUpToTabBarVC" id="Rj3-gg-we3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CJH-M9-2E8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="582" y="443"/>
+            <point key="canvasLocation" x="606" y="430"/>
         </scene>
         <!--Discovery View Controller-->
         <scene sceneID="5nn-rK-xUj">
@@ -303,6 +317,6 @@
         <image name="selected-search" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="shp-rM-J3m"/>
+        <segue reference="Rj3-gg-we3"/>
     </inferredMetricsTieBreakers>
 </document>
