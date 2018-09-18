@@ -224,7 +224,30 @@
                     <view key="view" contentMode="scaleToFill" id="26I-wT-dl2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ffq-p0-sef">
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jdx-B3-FNZ">
+                                    <size key="itemSize" width="300" height="473"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="hER-ot-k8O" id="RaZ-30-qIq"/>
+                                    <outlet property="delegate" destination="hER-ot-k8O" id="77r-Rg-ylD"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ffq-p0-sef" firstAttribute="leading" secondItem="nJA-0O-SeH" secondAttribute="leading" id="75g-i3-UVb"/>
+                            <constraint firstItem="ffq-p0-sef" firstAttribute="top" secondItem="nJA-0O-SeH" secondAttribute="top" id="PKp-gn-6f0"/>
+                            <constraint firstItem="ffq-p0-sef" firstAttribute="trailing" secondItem="nJA-0O-SeH" secondAttribute="trailing" id="dXR-r0-q9R"/>
+                            <constraint firstItem="ffq-p0-sef" firstAttribute="bottom" secondItem="nJA-0O-SeH" secondAttribute="bottom" id="nYX-5Q-XGz"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="nJA-0O-SeH"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="Wjt-TS-5ij">
@@ -239,6 +262,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="feedCollectionView" destination="ffq-p0-sef" id="uKv-wL-l0o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D2I-rN-B8t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
