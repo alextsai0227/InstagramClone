@@ -7,29 +7,58 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseStorage
 
-class CameraViewController: UIViewController {
 
+
+class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @IBOutlet weak var postImageView: UIImageView!
+    let picker = UIImagePickerController()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        picker.delegate = self
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func takePhoto_TouchUpInside(_ sender: Any) {
+        if UIImagePickerController.availableCaptureModes(for: .rear) != nil{
+            picker.allowsEditing = true
+            picker.sourceType = .camera
+            picker.cameraCaptureMode = .photo
+            picker.modalPresentationStyle = .fullScreen
+            present(picker, animated: true, completion: nil)
+        }else{
+            noCamera()
+        }
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func noCamera(){
+        let alertVC = UIAlertController(title: "Warning", message: "The device has no camera", preferredStyle: .alert)
+        let okActino = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertVC.addAction(okActino)
+        present(alertVC, animated: true, completion: nil)
     }
-    */
+    
+    @IBAction func choosePhoto_TouchUpInside(_ sender: Any) {
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true, completion: nil)
+    }
+ 
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
+            postImageView.image = image
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 
 }
+
