@@ -22,16 +22,16 @@ class FeedCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        likeBtn.setImage(UIImage(named: "icons8-heart-outline-30")!, for: .normal)
         // Initialization code
     }
     @IBAction func likeBtn_TouchUpInside(_ sender: Any) {
 
         if likeBtn.currentImage!.isEqual(UIImage(named: "icons8-heart-outline-30")){
-            likeBtn.setImage(UIImage(named: "icons8-heart-30")!, for: UIControlState.normal)
-            print (likeBtn.state)
+            likeBtn.setImage(UIImage(named: "icons8-heart-30")!, for: .normal)
+            
         }else{
-            likeBtn.setImage(UIImage(named: "search")!, for: UIControlState.selected)
-            print (likeBtn.state)
+            likeBtn.setImage(UIImage(named: "icons8-heart-outline-30")!, for: .selected)
         }
     }
     @IBAction func comment_TouchUpInside(_ sender: Any) {
