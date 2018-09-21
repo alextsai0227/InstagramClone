@@ -1,7 +1,4 @@
 PODS:
-  - Alamofire (4.7.3)
-  - AlamofireImage (3.4.1):
-    - Alamofire (~> 4.7)
   - Bolts (1.8.3):
     - Bolts/AppLinks (= 1.8.3)
     - Bolts/Tasks (= 1.8.3)
@@ -86,8 +83,6 @@ PODS:
   - SDWebImage/Core (4.4.2)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.7)
-  - AlamofireImage (~> 3.4)
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
@@ -96,8 +91,6 @@ DEPENDENCIES:
   - SDWebImage (~> 4.0)
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  AlamofireImage: 78d67ccbb763d87ba44b21583d2153500a195630
   Bolts: 52551f96df2f8aac6b4414347f3f8353a39f1966
   FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
   FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
@@ -118,6 +111,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
 
-PODFILE CHECKSUM: ad7d9d67b90bd1e733e8be31e6e3555647d99f4c
+PODFILE CHECKSUM: 496456999b7f47cefc394ae1ce9be5fcc83e2ce5
 
 COCOAPODS: 1.0.1

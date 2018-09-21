@@ -35,7 +35,10 @@ class FeedCollectionViewCell: UICollectionViewCell {
         delegate?.likeBtnControl(cell: self)
     }
     @IBAction func comment_TouchUpInside(_ sender: Any) {
-    
+        delegate?.likeBtnControl(cell: self)
+    }
+    @IBAction func display_usersLike(_ sender: Any) {
+        delegate?.likeBtnControl(cell: self)
     }
     
 }

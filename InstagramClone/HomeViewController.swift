@@ -8,8 +8,6 @@
 
 import UIKit
 import Firebase
-import Alamofire
-import AlamofireImage
 import SDWebImage
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -21,6 +19,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var profileImg:UIImage?
     var postImg:UIImage?
     var rowAtIndexPath = 0
+    let currentUserID = FIRAuth.auth()?.currentUser?.uid
+    var currentUserName: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.feedCollectionView.register(UINib(nibName: "FeedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
@@ -38,20 +38,36 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     print(ids.value)
                     // to get the users who are following's post
                     let usersPostRef = databaseRef.child("posts").child(ids.value as! String)
+                    print("========test===========")
+                    print(ids.value)
+                    
                     usersPostRef.observeSingleEvent(of: .value, with: {(postSnapshot) in
                         // store values in a dictionary
                         let postDictionary = postSnapshot.value as! NSDictionary
                         for (post) in postDictionary{
                             let result = post.value as! [String: Any]
+                            print("=======loook==========")
+                            print(result["users_like"])
+                            var users_like = result["users_like"] as? NSDictionary
+                            var num_users_like = 0
+                            if (users_like != nil) {
+                                num_users_like = (users_like?.count)!
+                            }
                             guard let profileUrl = result["profileImgUrl"]
                                 else{return}
                             guard let username = result["username"]
                                 else{return}
                             guard let postUrl = result["postImgUrl"]
                                 else{return}
-
-                            self.feedArray.append(Post(postUrl: postUrl as! String, profileUrl: profileUrl as! String, username: username as! String, likeImg: UIImage(named: "icons8-heart-outline-30")!))
-                            print(self.feedArray[0].postUrl)
+                            guard let likeNum = result["like"]
+                                else{return}
+//                            usersPostRef.child(post.key as! String).child("users_like").child("users").observeSingleEvent(of: .value, with: {(userslikeSnapshot) in
+//                                print("==========seee==========")
+//                                print(userslikeSnapshot.value)
+//                            })
+//                            print("==========postttttt==========")
+                            let like_num = likeNum as? String
+                            self.feedArray.append(Post(postUrl: postUrl as! String, profileUrl: profileUrl as! String, username: username as! String, likeImg: UIImage(named: "icons8-heart-outline-30")!, postID: post.key as! String, like_num: Int(like_num!)!, uid: ids.value as! String, usersLike: num_users_like))
                         }
                         self.feedCollectionView.reloadData()
                     }, withCancel: { (error) in
@@ -65,7 +81,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
         }
        
-       
+        
         // Do any additional setup after loading the view.
     }
     
@@ -103,7 +119,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         cell.postImageView.sd_setImage(with: URL(string: feedArray[indexPath.row].postUrl), placeholderImage: UIImage(named: "placeholder"))
         cell.likeBtn.setImage(feedArray[indexPath.row].likeImg, for: .normal)
         cell.usernameLabel.text = feedArray[indexPath.row].username
-
+        // show likes
+        if (feedArray[indexPath.row].like_num != 0){
+            cell.displayLikeLabel.text = String(feedArray[indexPath.row].like_num) + " likes"
+        }else{
+            cell.displayLikeLabel.text = "no one likes yet"
+        }
         return cell
     }
     
@@ -115,13 +136,40 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
 extension HomeViewController: FeedCollectionViewCellDelegate{
     func likeBtnControl(cell: FeedCollectionViewCell) {
+        
         let index = (self.feedCollectionView.indexPath(for: cell)?.row)!
+        
+        // find who likes or dislikes the post
+        let userRef = FIRDatabase.database().reference().child("users").child(currentUserID!)
+        userRef.observeSingleEvent(of: .value, with: {(usersSnapshot) in
+            let userdata = usersSnapshot.value as! NSDictionary
+            self.currentUserName = userdata["username"] as? String
+        })
+        
+        // postRef
+        let postRef = FIRDatabase.database().reference().child("posts").child(feedArray[index].uid).child(feedArray[index].postID);
+        
+        // usersLikeRef
+        let usersLikeRef = postRef.child("users_like")
         if feedArray[index].likeImg.isEqual(UIImage(named: "icons8-heart-outline-30")){
             feedArray[index].likeImg = UIImage(named: "icons8-heart-30")!
-            
+            feedArray[index].like_num += 1
+           
+            // save who likes to post data
+            usersLikeRef.updateChildValues([currentUserID!: currentUserName as Any])
         }else{
             feedArray[index].likeImg = UIImage(named: "icons8-heart-outline-30")!
+            feedArray[index].like_num -= 1
+            
+            // delete who dislike the post
+            usersLikeRef.child(currentUserID!).removeValue()
         }
+        
+        // update likes
+        let likeNum_string = String(feedArray[index].like_num)
+        postRef.updateChildValues(["like": likeNum_string])
+        
+        
         self.feedCollectionView.reloadItems(at: [self.feedCollectionView.indexPath(for: cell)!])
     }
 

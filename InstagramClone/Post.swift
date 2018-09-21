@@ -13,11 +13,19 @@ class Post{
     var profileUrl:String
     var username:String
     var likeImg:UIImage
+    var postID:String
+    var like_num: Int
+    var uid: String
+    var usersLike:Int
     
-    init(postUrl: String, profileUrl: String, username: String, likeImg: UIImage) {
+    init(postUrl: String, profileUrl: String, username: String, likeImg: UIImage, postID:String,like_num: Int,uid: String, usersLike: Int) {
         self.username = username
         self.postUrl = postUrl
         self.profileUrl = profileUrl
         self.likeImg = likeImg
+        self.postID = postID
+        self.like_num = like_num
+        self.uid = uid
+        self.usersLike = usersLike
     }
 }

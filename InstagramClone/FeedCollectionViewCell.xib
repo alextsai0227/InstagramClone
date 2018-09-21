@@ -91,6 +91,9 @@
                             <constraint firstAttribute="height" constant="21" id="pxh-T9-eI1"/>
                         </constraints>
                         <state key="normal" title="Display"/>
+                        <connections>
+                            <action selector="display_usersLike:" destination="gTV-IL-0wX" eventType="touchUpInside" id="McJ-AG-oHF"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>

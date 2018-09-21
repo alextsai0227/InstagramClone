@@ -9,7 +9,5 @@ target 'InstagramClone' do
   pod 'FirebaseUI/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
-  pod 'Alamofire', '~> 4.7'
-  pod 'AlamofireImage', '~> 3.4'
   pod 'SDWebImage', '~> 4.0'
 end
