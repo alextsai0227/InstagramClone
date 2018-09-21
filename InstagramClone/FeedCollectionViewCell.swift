@@ -6,8 +6,15 @@
 //  Copyright © 2018年 蔡舜珵. All rights reserved.
 //
 
-import UIKit
 
+@objc protocol FeedCollectionViewCellDelegate: class{
+    
+    func likeBtnControl(cell: FeedCollectionViewCell)
+    func commentBtnControl(cell: FeedCollectionViewCell)
+    //@objc 為了可以做optional
+}
+
+import UIKit
 class FeedCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var profileImg: UIImageView!
@@ -18,21 +25,14 @@ class FeedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var displayLikeLabel: UILabel!
     @IBOutlet weak var displayLikeBtn: UIButton!
     @IBOutlet weak var displayCommentLabel: UILabel!
-    
-    
+    weak var delegate: FeedCollectionViewCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         likeBtn.setImage(UIImage(named: "icons8-heart-outline-30")!, for: .normal)
         // Initialization code
     }
     @IBAction func likeBtn_TouchUpInside(_ sender: Any) {
-
-        if likeBtn.currentImage!.isEqual(UIImage(named: "icons8-heart-outline-30")){
-            likeBtn.setImage(UIImage(named: "icons8-heart-30")!, for: .normal)
-            
-        }else{
-            likeBtn.setImage(UIImage(named: "icons8-heart-outline-30")!, for: .selected)
-        }
+        delegate?.likeBtnControl(cell: self)
     }
     @IBAction func comment_TouchUpInside(_ sender: Any) {
     

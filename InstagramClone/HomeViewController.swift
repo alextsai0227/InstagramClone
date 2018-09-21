@@ -8,14 +8,19 @@
 
 import UIKit
 import Firebase
+import Alamofire
+import AlamofireImage
+import SDWebImage
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var feedCollectionView: UICollectionView!
     var feedArray = [Post]()
+    var profileArr = [UIImage]()
+    var postArr = [UIImage]()
     let cellIdentifier = "cell"
     var profileImg:UIImage?
     var postImg:UIImage?
-    
+    var rowAtIndexPath = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.feedCollectionView.register(UINib(nibName: "FeedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
@@ -44,16 +49,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                 else{return}
                             guard let postUrl = result["postImgUrl"]
                                 else{return}
-                            if let profileData = try? Data(contentsOf: URL(string: profileUrl as! String)!){
-                                self.profileImg = UIImage(data: profileData)!
-                            }
-                            if let postData = try? Data(contentsOf: URL(string: postUrl as! String)!){
-                                self.postImg = UIImage(data: postData)!
-                            }
 
-                            self.feedArray.append(Post(postUrl: self.postImg!, profileUrl: self.profileImg!, username: username as! String))
+                            self.feedArray.append(Post(postUrl: postUrl as! String, profileUrl: profileUrl as! String, username: username as! String, likeImg: UIImage(named: "icons8-heart-outline-30")!))
                             print(self.feedArray[0].postUrl)
-                            
                         }
                         self.feedCollectionView.reloadData()
                     }, withCancel: { (error) in
@@ -70,6 +68,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
        
         // Do any additional setup after loading the view.
     }
+    
     @IBAction func logout_TouchUpInside(_ sender: Any) {
         do{
             try FIRAuth.auth()?.signOut()
@@ -99,11 +98,34 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! FeedCollectionViewCell
         
-
-        cell.profileImg.image = feedArray[indexPath.row].profileUrl
-        cell.postImageView.image = feedArray[indexPath.row].postUrl
+        cell.delegate = self
+        cell.profileImg.sd_setImage(with: URL(string: feedArray[indexPath.row].profileUrl), placeholderImage: UIImage(named: "placeholder"))
+        cell.postImageView.sd_setImage(with: URL(string: feedArray[indexPath.row].postUrl), placeholderImage: UIImage(named: "placeholder"))
+        cell.likeBtn.setImage(feedArray[indexPath.row].likeImg, for: .normal)
         cell.usernameLabel.text = feedArray[indexPath.row].username
-        
+
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! FeedCollectionViewCell
+        
+    }
+}
+
+extension HomeViewController: FeedCollectionViewCellDelegate{
+    func likeBtnControl(cell: FeedCollectionViewCell) {
+        let index = (self.feedCollectionView.indexPath(for: cell)?.row)!
+        if feedArray[index].likeImg.isEqual(UIImage(named: "icons8-heart-outline-30")){
+            feedArray[index].likeImg = UIImage(named: "icons8-heart-30")!
+            
+        }else{
+            feedArray[index].likeImg = UIImage(named: "icons8-heart-outline-30")!
+        }
+        self.feedCollectionView.reloadItems(at: [self.feedCollectionView.indexPath(for: cell)!])
+    }
+
+    func commentBtnControl(cell: FeedCollectionViewCell){
+
+    }    
 }
