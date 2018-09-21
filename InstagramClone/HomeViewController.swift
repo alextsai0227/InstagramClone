@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var rowAtIndexPath = 0
     let currentUserID = FIRAuth.auth()?.currentUser?.uid
     var currentUserName: String?
+    var userWhoLikes: [String]?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.feedCollectionView.register(UINib(nibName: "FeedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
@@ -175,5 +176,32 @@ extension HomeViewController: FeedCollectionViewCellDelegate{
 
     func commentBtnControl(cell: FeedCollectionViewCell){
 
-    }    
+    }
+    
+    func displayBtnControl(cell: FeedCollectionViewCell){
+        rowAtIndexPath = (self.feedCollectionView.indexPath(for: cell)?.row)!
+        let index = (self.feedCollectionView.indexPath(for: cell)?.row)!
+
+        let naviDisplayUsersVC = storyboard?.instantiateViewController(withIdentifier: "NaviToDisplay") as! UINavigationController
+        let displayUsersVC = naviDisplayUsersVC.viewControllers.first as? DisplayUsersTableViewController
+        // usersLikeRef
+        let usersLikeRef = FIRDatabase.database().reference().child("posts").child(feedArray[index].uid).child(feedArray[index].postID).child("users_like");
+
+        usersLikeRef.observeSingleEvent(of: .value, with: {(usersSnapshot) in
+            let users = usersSnapshot.value as! NSDictionary
+            displayUsersVC?.list = users.allValues as! [String]
+            print(users.allValues)
+            print(displayUsersVC?.list)
+            self.present(naviDisplayUsersVC, animated: true, completion: nil)
+        })
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        
+//        let navVC = segue.destination as? UINavigationController
+//        
+//        let tableVC = navVC?.viewControllers.first as! DisplayUsersTableViewController
+//        
+//        tableVC.list = self.userWhoLikes
+//    }
 }

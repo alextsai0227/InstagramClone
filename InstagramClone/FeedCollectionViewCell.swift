@@ -11,6 +11,7 @@
     
     func likeBtnControl(cell: FeedCollectionViewCell)
     func commentBtnControl(cell: FeedCollectionViewCell)
+    func displayBtnControl(cell: FeedCollectionViewCell)
     //@objc 為了可以做optional
 }
 
@@ -35,10 +36,10 @@ class FeedCollectionViewCell: UICollectionViewCell {
         delegate?.likeBtnControl(cell: self)
     }
     @IBAction func comment_TouchUpInside(_ sender: Any) {
-        delegate?.likeBtnControl(cell: self)
+        delegate?.commentBtnControl(cell: self)
     }
     @IBAction func display_usersLike(_ sender: Any) {
-        delegate?.likeBtnControl(cell: self)
+        delegate?.displayBtnControl(cell: self)
     }
     
 }

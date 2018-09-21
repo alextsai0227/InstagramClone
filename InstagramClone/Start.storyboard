@@ -217,6 +217,44 @@
             </objects>
             <point key="canvasLocation" x="3500" y="-468.4729064039409"/>
         </scene>
+        <!--Display Users Table View Controller-->
+        <scene sceneID="Vfx-Uf-DnI">
+            <objects>
+                <tableViewController storyboardIdentifier="DisplayUsersTableViewController" id="n6S-qN-Ecb" customClass="DisplayUsersTableViewController" customModule="InstagramClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BVQ-DW-S0a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" id="R1K-Dx-Wok">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R1K-Dx-Wok" id="a96-Fj-qq9">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="n6S-qN-Ecb" id="i2J-O6-BFV"/>
+                            <outlet property="delegate" destination="n6S-qN-Ecb" id="erU-vm-dKR"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Q96-RO-5Yd">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="QXq-ky-dxP">
+                            <connections>
+                                <action selector="backToHomeViewController:" destination="n6S-qN-Ecb" id="CET-I9-qkl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="commentTableView" destination="BVQ-DW-S0a" id="I8g-0R-nGq"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jDB-uN-utn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5335.1999999999998" y="-1210.344827586207"/>
+        </scene>
         <!--Home-->
         <scene sceneID="eev-3N-e0T">
             <objects>
@@ -579,6 +617,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pZn-3c-L3I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2632.8000000000002" y="1671.4285714285716"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oKQ-ol-cJV">
+            <objects>
+                <navigationController storyboardIdentifier="NaviToDisplay" automaticallyAdjustsScrollViewInsets="NO" id="ky9-ki-Ngd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1ih-ps-jW8">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="n6S-qN-Ecb" kind="relationship" relationship="rootViewController" id="mjq-yP-F4G"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m2Q-Dd-CnE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4392.8000000000002" y="-1210.344827586207"/>
         </scene>
     </scenes>
     <resources>
