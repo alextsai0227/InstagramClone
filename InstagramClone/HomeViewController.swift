@@ -11,47 +11,63 @@ import Firebase
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var feedCollectionView: UICollectionView!
-    var feedArray = [Post(postUrl: "https://fakeimg.pl/600x600/", profileUrl: "https://fakeimg.pl/600x600/", username: "test"),Post(postUrl: "https://fakeimg.pl/600x600/", profileUrl: "https://fakeimg.pl/600x600/", username: "test"),Post(postUrl: "https://fakeimg.pl/600x600/", profileUrl: "https://fakeimg.pl/600x600/", username: "test"),Post(postUrl: "https://fakeimg.pl/600x600/", profileUrl: "https://fakeimg.pl/600x600/", username: "test"),Post(postUrl: "https://fakeimg.pl/600x600/", profileUrl: "https://fakeimg.pl/600x600/", username: "test"),Post(postUrl: "https://fakeimg.pl/600x600/", profileUrl: "https://fakeimg.pl/600x600/", username: "test"),Post(postUrl: "https://fakeimg.pl/600x600/", profileUrl: "https://fakeimg.pl/600x600/", username: "test")]
+    var feedArray = [Post]()
     let cellIdentifier = "cell"
+    var profileImg:UIImage?
+    var postImg:UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.feedCollectionView.register(UINib(nibName: "FeedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
         self.feedCollectionView.dataSource = self
         self.feedCollectionView.delegate = self
-//        let databaseRef = FIRDatabase.database().reference()
-//        if let uid = FIRAuth.auth()?.currentUser?.uid{
-//            // to get the users we are following
-//            let myFollowingRef = databaseRef.child("following").child(uid)
-//            myFollowingRef.observe(.value, with: { (followingSnapshot) in
-//                // store values in dictionary
-//                let followingDictionary = followingSnapshot.value as! NSDictionary
-//                for(id, _) in followingDictionary{
-//                    // to get the users who are following's post
-//                    let usersPostRef = databaseRef.child("post").child(id as! String)
-//                    usersPostRef.observe(.value, with: {(postSnapshot) in
-//                        // store values in a dictionary
-//                        let postDictionary = postSnapshot.value as! NSDictionary
-//                        for (p) in postDictionary{
-//                            let posts = p.value as! NSDictionary
-//
-//                            guard let profileUrl = posts.value(forKey: "profile_pic")
-//                                else{return}
-//                            guard let username = posts.value(forKey: "username")
-//                                else{return}
-//                            guard let postUrl = posts.value(forKey: "posted_pic")
-//                                else{return}
-//                            self.feedArray.append(Post(postUrl: postUrl as! String, profileUrl: profileUrl as! String, username: username as! String))
-//                        }
-//                    }, withCancel: { (error) in
-//                        print(error)
-//                    })
-//                }
-//            }, withCancel: { (error) in
-//                print(error)
-//            })
-//        }
-        
-        
+        let databaseRef = FIRDatabase.database().reference()
+        if let uid = FIRAuth.auth()?.currentUser?.uid{
+            feedArray = []
+            // to get the users we are following
+            let myFollowingRef = databaseRef.child("following").child(uid)
+            myFollowingRef.observeSingleEvent(of: .value, with: { (followingSnapshot) in
+                // store values in dictionary
+                let followingDictionary = followingSnapshot.value as! NSDictionary
+                for(ids) in followingDictionary{
+                    print(ids.value)
+                    // to get the users who are following's post
+                    let usersPostRef = databaseRef.child("posts").child(ids.value as! String)
+                    usersPostRef.observeSingleEvent(of: .value, with: {(postSnapshot) in
+                        // store values in a dictionary
+                        let postDictionary = postSnapshot.value as! NSDictionary
+                        for (post) in postDictionary{
+                            let result = post.value as! [String: Any]
+                            guard let profileUrl = result["profileImgUrl"]
+                                else{return}
+                            guard let username = result["username"]
+                                else{return}
+                            guard let postUrl = result["postImgUrl"]
+                                else{return}
+                            if let profileData = try? Data(contentsOf: URL(string: profileUrl as! String)!){
+                                self.profileImg = UIImage(data: profileData)!
+                            }
+                            if let postData = try? Data(contentsOf: URL(string: postUrl as! String)!){
+                                self.postImg = UIImage(data: postData)!
+                            }
+
+                            self.feedArray.append(Post(postUrl: self.postImg!, profileUrl: self.profileImg!, username: username as! String))
+                            print(self.feedArray[0].postUrl)
+                            
+                        }
+                        self.feedCollectionView.reloadData()
+                    }, withCancel: { (error) in
+                        print(error)
+                    })
+                }
+                
+            }, withCancel: { (error) in
+                print(error)
+            })
+
+        }
+       
+       
         // Do any additional setup after loading the view.
     }
     @IBAction func logout_TouchUpInside(_ sender: Any) {
@@ -71,6 +87,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(feedArray.count)
         return feedArray.count
     }
     
@@ -81,18 +98,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! FeedCollectionViewCell
-       
-        let profileUrl = URL(string: feedArray[indexPath.row].profileUrl)
-        if let profileData = try? Data(contentsOf: profileUrl!)
-        {
-            cell.profileImg.image = UIImage(data: profileData)!
-        }
         
-        let postUrl = URL(string: feedArray[indexPath.row].postUrl)
-        if let postData = try? Data(contentsOf: postUrl!)
-        {
-            cell.postImageView.image = UIImage(data: postData)!
-        }
+
+        cell.profileImg.image = feedArray[indexPath.row].profileUrl
+        cell.postImageView.image = feedArray[indexPath.row].postUrl
         cell.usernameLabel.text = feedArray[indexPath.row].username
         
         return cell

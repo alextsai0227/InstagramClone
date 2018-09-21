@@ -363,14 +363,95 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Plf-q2-03d"/>
                     </view>
-                    <navigationItem key="navigationItem" id="veV-Ve-TGn"/>
+                    <navigationItem key="navigationItem" id="veV-Ve-TGn">
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="YCv-SE-D1G">
+                            <connections>
+                                <action selector="savePost:" destination="MvN-9x-62v" id="Tbi-wE-gfB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="postImageView" destination="Ipg-nr-xvU" id="kmr-rv-ZO9"/>
+                        <segue destination="K6j-M7-we6" kind="presentation" identifier="CameraToEditPhoto" id="ITk-ba-HhC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Qc-vX-TSu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3506.4000000000001" y="225.36945812807883"/>
+            <point key="canvasLocation" x="3500" y="225"/>
+        </scene>
+        <!--Edit Photo View Controller-->
+        <scene sceneID="Xfm-tE-Ry8">
+            <objects>
+                <viewController id="K6j-M7-we6" customClass="EditPhotoViewController" customModule="InstagramClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zwy-vQ-yTk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t3J-kx-YEq">
+                                <rect key="frame" x="0.0" y="44" width="375" height="289"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vA9-We-3sA">
+                                <rect key="frame" x="150" y="667" width="94" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="JVD-YQ-NBz"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="brightnessChanged:" destination="K6j-M7-we6" eventType="valueChanged" id="OQT-TV-acI"/>
+                                </connections>
+                            </stepper>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IL4-1x-62d">
+                                <rect key="frame" x="94" y="667" width="35" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Mor-fh-5r8"/>
+                                    <constraint firstAttribute="height" constant="30" id="taL-lc-IPu"/>
+                                </constraints>
+                                <state key="normal" title="Filter"/>
+                                <connections>
+                                    <action selector="filter_TouchUpInside:" destination="K6j-M7-we6" eventType="touchUpInside" id="oaB-rn-m34"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGi-YN-xNs">
+                                <rect key="frame" x="22" y="667" width="34" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="UGx-3P-x0g"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="back_TouchUpInside:" destination="K6j-M7-we6" eventType="touchUpInside" id="A0r-r1-FKV"/>
+                                </connections>
+                            </button>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="cMl-8r-pul">
+                                <rect key="frame" x="265" y="667" width="94" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="DWY-iE-2vU"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="contrastChanged:" destination="K6j-M7-we6" eventType="valueChanged" id="nhq-nm-eSq"/>
+                                </connections>
+                            </stepper>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TIF-30-gh2" firstAttribute="bottom" secondItem="cMl-8r-pul" secondAttribute="bottom" constant="82" id="IZ0-8T-6vd"/>
+                            <constraint firstItem="TIF-30-gh2" firstAttribute="bottom" secondItem="IL4-1x-62d" secondAttribute="bottom" constant="81" id="Ka6-nS-q62"/>
+                            <constraint firstItem="TIF-30-gh2" firstAttribute="trailing" secondItem="cMl-8r-pul" secondAttribute="trailing" constant="16" id="Mnv-IW-duj"/>
+                            <constraint firstItem="TIF-30-gh2" firstAttribute="bottom" secondItem="vA9-We-3sA" secondAttribute="bottom" constant="82" id="PJz-1Z-WBy"/>
+                            <constraint firstItem="TIF-30-gh2" firstAttribute="bottom" secondItem="IL4-1x-62d" secondAttribute="bottom" constant="81" id="UeM-aO-VCj"/>
+                            <constraint firstItem="vA9-We-3sA" firstAttribute="leading" secondItem="IL4-1x-62d" secondAttribute="trailing" constant="21" id="Wd1-iv-vuQ"/>
+                            <constraint firstItem="lGi-YN-xNs" firstAttribute="leading" secondItem="TIF-30-gh2" secondAttribute="leading" constant="22" id="etK-g1-kE8"/>
+                            <constraint firstItem="cMl-8r-pul" firstAttribute="leading" secondItem="vA9-We-3sA" secondAttribute="trailing" constant="21" id="hHn-ZZ-ehE"/>
+                            <constraint firstItem="TIF-30-gh2" firstAttribute="bottom" secondItem="lGi-YN-xNs" secondAttribute="bottom" constant="81" id="kaN-Nc-ubj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="TIF-30-gh2"/>
+                    </view>
+                    <connections>
+                        <outlet property="editImageView" destination="t3J-kx-YEq" id="eqg-BN-rcT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jIP-ZV-Sws" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4468" y="224.6305418719212"/>
         </scene>
         <!--Activity View Controller-->
         <scene sceneID="0la-Oj-7JT">

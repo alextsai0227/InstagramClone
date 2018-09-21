@@ -38,24 +38,30 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRa-Oj-yp9">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRa-Oj-yp9">
                         <rect key="frame" x="20" y="324" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="QJI-7v-UiX"/>
                             <constraint firstAttribute="height" constant="30" id="caJ-Xu-YuQ"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
+                        <state key="normal" title="Button" image="icons8-heart-outline-30"/>
+                        <connections>
+                            <action selector="likeBtn_TouchUpInside:" destination="gTV-IL-0wX" eventType="touchUpInside" id="M4j-zv-Xto"/>
+                        </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUY-AG-RXa">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUY-AG-RXa">
                         <rect key="frame" x="70" y="324" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="0MW-GV-fpG"/>
                             <constraint firstAttribute="width" constant="30" id="zVD-AL-YmH"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
+                        <state key="normal" title="Button" image="icons8-speech-bubble-50"/>
+                        <connections>
+                            <action selector="comment_TouchUpInside:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Wy9-FE-aPJ"/>
+                        </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QD5-BH-ciN">
-                        <rect key="frame" x="20" y="364" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Who Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QD5-BH-ciN">
+                        <rect key="frame" x="20" y="364" width="80" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Au8-w0-Isa"/>
                         </constraints>
@@ -63,19 +69,10 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bim-Vi-6Mg">
-                        <rect key="frame" x="20" y="395" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bim-Vi-6Mg">
+                        <rect key="frame" x="20" y="395" width="75" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="sbk-XL-RHR"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdT-Rt-ufN">
-                        <rect key="frame" x="72" y="395" width="42" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="QK9-AI-kne"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -88,6 +85,13 @@
                         </constraints>
                         <state key="normal" title="Button"/>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQO-9d-ARl">
+                        <rect key="frame" x="102" y="364" width="50" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="pxh-T9-eI1"/>
+                        </constraints>
+                        <state key="normal" title="Display"/>
+                    </button>
                 </subviews>
             </view>
             <constraints>
@@ -99,22 +103,27 @@
                 <constraint firstItem="UUY-AG-RXa" firstAttribute="top" secondItem="R7O-Gz-slw" secondAttribute="bottom" constant="10" id="C5R-aX-pmm"/>
                 <constraint firstAttribute="trailing" secondItem="R7O-Gz-slw" secondAttribute="trailing" id="ED0-xi-3yA"/>
                 <constraint firstItem="Bim-Vi-6Mg" firstAttribute="top" secondItem="QD5-BH-ciN" secondAttribute="bottom" constant="10" id="F2E-mK-sAF"/>
+                <constraint firstItem="cQO-9d-ARl" firstAttribute="top" secondItem="R7O-Gz-slw" secondAttribute="bottom" constant="50" id="Gta-A0-JpK"/>
                 <constraint firstItem="JbT-Ve-Yn0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="MDM-qn-OvD"/>
                 <constraint firstItem="608-gc-k7P" firstAttribute="leading" secondItem="QRu-lA-ajr" secondAttribute="trailing" constant="17" id="RMN-Lj-nL0"/>
                 <constraint firstItem="QRu-lA-ajr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="T7r-oe-x0b"/>
                 <constraint firstItem="PRa-Oj-yp9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="XPa-dH-gq6"/>
                 <constraint firstItem="UUY-AG-RXa" firstAttribute="leading" secondItem="PRa-Oj-yp9" secondAttribute="trailing" constant="20" id="XhV-eo-sPd"/>
-                <constraint firstItem="bdT-Rt-ufN" firstAttribute="leading" secondItem="Bim-Vi-6Mg" secondAttribute="trailing" constant="10" id="Y2V-tK-RH1"/>
+                <constraint firstItem="cQO-9d-ARl" firstAttribute="leading" secondItem="QD5-BH-ciN" secondAttribute="trailing" constant="2" id="ZkN-K7-R2X"/>
                 <constraint firstItem="QD5-BH-ciN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="e5w-JT-ptv"/>
                 <constraint firstItem="PRa-Oj-yp9" firstAttribute="top" secondItem="R7O-Gz-slw" secondAttribute="bottom" constant="10" id="js6-iL-ruU"/>
                 <constraint firstItem="R7O-Gz-slw" firstAttribute="top" secondItem="608-gc-k7P" secondAttribute="bottom" constant="35" id="lD6-9c-ycm"/>
                 <constraint firstItem="R7O-Gz-slw" firstAttribute="top" secondItem="QRu-lA-ajr" secondAttribute="bottom" constant="20" id="pqX-uP-KXD"/>
                 <constraint firstItem="JbT-Ve-Yn0" firstAttribute="top" secondItem="Bim-Vi-6Mg" secondAttribute="bottom" constant="10" id="vp2-WN-jGv"/>
-                <constraint firstItem="bdT-Rt-ufN" firstAttribute="top" secondItem="UUY-AG-RXa" secondAttribute="bottom" constant="41" id="x1n-91-GhW"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="283" height="473"/>
             <connections>
+                <outlet property="commentBtn" destination="UUY-AG-RXa" id="zrD-HD-Itd"/>
+                <outlet property="displayCommentLabel" destination="Bim-Vi-6Mg" id="4nt-tr-FP5"/>
+                <outlet property="displayLikeBtn" destination="cQO-9d-ARl" id="YKW-MB-Cq4"/>
+                <outlet property="displayLikeLabel" destination="QD5-BH-ciN" id="o9I-v7-7sc"/>
+                <outlet property="likeBtn" destination="PRa-Oj-yp9" id="MuQ-ez-dRF"/>
                 <outlet property="postImageView" destination="R7O-Gz-slw" id="ovg-hH-bq6"/>
                 <outlet property="profileImg" destination="QRu-lA-ajr" id="EKp-re-iJ7"/>
                 <outlet property="usernameLabel" destination="608-gc-k7P" id="RUc-Rz-0hA"/>
@@ -122,4 +131,8 @@
             <point key="canvasLocation" x="-194.5" y="-202.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="icons8-heart-outline-30" width="30" height="30"/>
+        <image name="icons8-speech-bubble-50" width="50" height="50"/>
+    </resources>
 </document>

@@ -18,6 +18,8 @@
 		032C2BCD21513626005B5AB1 /* FeedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032C2BCB21513626005B5AB1 /* FeedCollectionViewCell.xib */; };
 		032C2BD221513E2E005B5AB1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2BD121513E2E005B5AB1 /* Post.swift */; };
 		032C2BD421513E41005B5AB1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2BD321513E41005B5AB1 /* User.swift */; };
+		035C5B502153A45A005F4094 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035C5B4F2153A45A005F4094 /* CoreImage.framework */; };
+		035C5B522153A4E1005F4094 /* EditPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035C5B512153A4E1005F4094 /* EditPhotoViewController.swift */; };
 		03F7948B214A989800D36648 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F7948A214A989800D36648 /* AppDelegate.swift */; };
 		03F79492214A989D00D36648 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03F79491214A989D00D36648 /* Assets.xcassets */; };
 		03F79495214A989D00D36648 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F79493214A989D00D36648 /* LaunchScreen.storyboard */; };
@@ -38,6 +40,8 @@
 		032C2BCB21513626005B5AB1 /* FeedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedCollectionViewCell.xib; sourceTree = "<group>"; };
 		032C2BD121513E2E005B5AB1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		032C2BD321513E41005B5AB1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		035C5B4F2153A45A005F4094 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		035C5B512153A4E1005F4094 /* EditPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPhotoViewController.swift; sourceTree = "<group>"; };
 		03F79487214A989800D36648 /* InstagramClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03F7948A214A989800D36648 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03F79491214A989D00D36648 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				035C5B502153A45A005F4094 /* CoreImage.framework in Frameworks */,
 				B9A7FC1C07C4BF98B147D1C7 /* Pods_InstagramClone.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,6 +96,7 @@
 				03039F55214AAF4400E358E0 /* HomeViewController.swift */,
 				03039F57214AAF5100E358E0 /* DiscoveryViewController.swift */,
 				03039F59214AAF5A00E358E0 /* CameraViewController.swift */,
+				035C5B512153A4E1005F4094 /* EditPhotoViewController.swift */,
 				03039F5B214AAF6500E358E0 /* ActivityViewController.swift */,
 				032C2BCA21513626005B5AB1 /* FeedCollectionViewCell.swift */,
 				032C2BCB21513626005B5AB1 /* FeedCollectionViewCell.xib */,
@@ -116,6 +122,7 @@
 		A9A520D89306367CB4E635AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				035C5B4F2153A45A005F4094 /* CoreImage.framework */,
 				495369A1D330CC83E84BE767 /* Pods_InstagramClone.framework */,
 			);
 			name = Frameworks;
@@ -252,6 +259,7 @@
 				03039F5C214AAF6500E358E0 /* ActivityViewController.swift in Sources */,
 				032C2BCC21513626005B5AB1 /* FeedCollectionViewCell.swift in Sources */,
 				03039F58214AAF5100E358E0 /* DiscoveryViewController.swift in Sources */,
+				035C5B522153A4E1005F4094 /* EditPhotoViewController.swift in Sources */,
 				03039F5E214AAF7B00E358E0 /* ProfileViewController.swift in Sources */,
 				03039F5A214AAF5A00E358E0 /* CameraViewController.swift in Sources */,
 				032C2BD221513E2E005B5AB1 /* Post.swift in Sources */,

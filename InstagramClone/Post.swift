@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import UIKit
 class Post{
-    var postUrl:String
-    var profileUrl:String
+    var postUrl: UIImage
+    var profileUrl:UIImage
     var username:String
     
-    init(postUrl: String, profileUrl: String, username: String) {
+    init(postUrl: UIImage, profileUrl: UIImage, username: String) {
         self.username = username
         self.postUrl = postUrl
         self.profileUrl = profileUrl
