@@ -185,11 +185,21 @@ extension HomeViewController: FeedCollectionViewCellDelegate{
         let usersCommentRef = FIRDatabase.database().reference().child("posts").child(feedArray[index].uid).child(feedArray[index].postID).child("comments");
         
         usersCommentRef.observeSingleEvent(of: .value, with: {(usersSnapshot) in
-            let users = usersSnapshot.value as! NSArray
-            var i = 1
-            while i < users.count{
-                commentsVC?.commentArr.append(users[i] as! [String : String])
-                i = i + 1
+            
+            if let a = usersSnapshot.value as? NSNull{
+                
+            }else{
+            // get all the comments for related post.
+                let users = usersSnapshot.value as! NSDictionary
+                var i = 0
+                print(users)
+                users.allValues
+                if (users != nil){
+                    while i < users.count{
+                        commentsVC?.commentArr.append(users.allValues[i] as! [String : String])
+                        i = i + 1
+                    }
+                }
             }
             commentsVC?.postUID = self.feedArray[index].uid
             commentsVC?.postID = self.feedArray[index].postID
