@@ -1,0 +1,6 @@
+framework module AGImageControls {
+  umbrella header "AGImageControls-umbrella.h"
+
+  export *
+  module * { export * }
+}

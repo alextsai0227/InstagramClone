@@ -14,6 +14,7 @@
 		03039F5C214AAF6500E358E0 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03039F5B214AAF6500E358E0 /* ActivityViewController.swift */; };
 		03039F5E214AAF7B00E358E0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03039F5D214AAF7B00E358E0 /* ProfileViewController.swift */; };
 		03039F60214BBEB000E358E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03039F5F214BBEAF00E358E0 /* GoogleService-Info.plist */; };
+		031BFBE721565B7A00E0029E /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BFBE621565B7A00E0029E /* GridView.swift */; };
 		032C2BCC21513626005B5AB1 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2BCA21513626005B5AB1 /* FeedCollectionViewCell.swift */; };
 		032C2BCD21513626005B5AB1 /* FeedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032C2BCB21513626005B5AB1 /* FeedCollectionViewCell.xib */; };
 		032C2BD221513E2E005B5AB1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2BD121513E2E005B5AB1 /* Post.swift */; };
@@ -22,7 +23,6 @@
 		0355644B2155F3C70029661A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035564492155F3C70029661A /* CommentTableViewCell.swift */; };
 		0355644C2155F3C70029661A /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0355644A2155F3C70029661A /* CommentTableViewCell.xib */; };
 		035C5B502153A45A005F4094 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035C5B4F2153A45A005F4094 /* CoreImage.framework */; };
-		035C5B522153A4E1005F4094 /* EditPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035C5B512153A4E1005F4094 /* EditPhotoViewController.swift */; };
 		039FE2F921551864005B544A /* DisplayUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039FE2F821551864005B544A /* DisplayUsersTableViewController.swift */; };
 		03F7948B214A989800D36648 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F7948A214A989800D36648 /* AppDelegate.swift */; };
 		03F79492214A989D00D36648 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03F79491214A989D00D36648 /* Assets.xcassets */; };
@@ -40,6 +40,7 @@
 		03039F5B214AAF6500E358E0 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		03039F5D214AAF7B00E358E0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		03039F5F214BBEAF00E358E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		031BFBE621565B7A00E0029E /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		032C2BCA21513626005B5AB1 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		032C2BCB21513626005B5AB1 /* FeedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedCollectionViewCell.xib; sourceTree = "<group>"; };
 		032C2BD121513E2E005B5AB1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -48,7 +49,6 @@
 		035564492155F3C70029661A /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		0355644A2155F3C70029661A /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		035C5B4F2153A45A005F4094 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		035C5B512153A4E1005F4094 /* EditPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPhotoViewController.swift; sourceTree = "<group>"; };
 		039FE2F821551864005B544A /* DisplayUsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayUsersTableViewController.swift; sourceTree = "<group>"; };
 		03F79487214A989800D36648 /* InstagramClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03F7948A214A989800D36648 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,7 +84,6 @@
 				03039F57214AAF5100E358E0 /* DiscoveryViewController.swift */,
 				03039F5D214AAF7B00E358E0 /* ProfileViewController.swift */,
 				03039F59214AAF5A00E358E0 /* CameraViewController.swift */,
-				035C5B512153A4E1005F4094 /* EditPhotoViewController.swift */,
 				03039F5B214AAF6500E358E0 /* ActivityViewController.swift */,
 				035564442155ECB90029661A /* CommentViewController.swift */,
 				039FE2F821551864005B544A /* DisplayUsersTableViewController.swift */,
@@ -108,6 +107,7 @@
 				032C2BCB21513626005B5AB1 /* FeedCollectionViewCell.xib */,
 				035564492155F3C70029661A /* CommentTableViewCell.swift */,
 				0355644A2155F3C70029661A /* CommentTableViewCell.xib */,
+				031BFBE621565B7A00E0029E /* GridView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -297,11 +297,11 @@
 				032C2BCC21513626005B5AB1 /* FeedCollectionViewCell.swift in Sources */,
 				0355644B2155F3C70029661A /* CommentTableViewCell.swift in Sources */,
 				03039F58214AAF5100E358E0 /* DiscoveryViewController.swift in Sources */,
-				035C5B522153A4E1005F4094 /* EditPhotoViewController.swift in Sources */,
 				03039F5E214AAF7B00E358E0 /* ProfileViewController.swift in Sources */,
 				03039F5A214AAF5A00E358E0 /* CameraViewController.swift in Sources */,
 				032C2BD221513E2E005B5AB1 /* Post.swift in Sources */,
 				039FE2F921551864005B544A /* DisplayUsersTableViewController.swift in Sources */,
+				031BFBE721565B7A00E0029E /* GridView.swift in Sources */,
 				032C2BD421513E41005B5AB1 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

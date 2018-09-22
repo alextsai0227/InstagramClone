@@ -9,10 +9,10 @@
 import UIKit
 import Firebase
 import FirebaseStorage
+import AGImageControls
+import CropViewController
 
-
-
-class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, UINavigationControllerDelegate, AGCameraSnapViewControllerDelegate, CropViewControllerDelegate {
     @IBOutlet weak var postImageView: UIImageView!
     let picker = UIImagePickerController()
     
@@ -20,29 +20,27 @@ class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CameraViewController.editPhoto))
-        postImageView.addGestureRecognizer(tapGesture)
-        postImageView.isUserInteractionEnabled = true
+        postImageView.image = UIImage(named: "placeholder")
     }
 
-    @objc func editPhoto(imageView: UIImageView){
-        self.performSegue(withIdentifier: "CameraToEditPhoto", sender: nil)
+    // Screen width.
+    public var screenWidth: CGFloat {
+        return UIScreen.main.bounds.width
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "CameraToEditPhoto" {
-            let controller = segue.destination as! EditPhotoViewController
-            controller.originalImageView = postImageView as? UIImageView
-        }
+    
+    // Screen height.
+    public var screenHeight: CGFloat {
+        return UIScreen.main.bounds.height
     }
     
     @IBAction func takePhoto_TouchUpInside(_ sender: Any) {
         if UIImagePickerController.availableCaptureModes(for: .rear) != nil{
-            picker.allowsEditing = true
-            picker.sourceType = .camera
-            picker.cameraCaptureMode = .photo
-            picker.modalPresentationStyle = .fullScreen
-            present(picker, animated: true, completion: nil)
+            let camera = AGCameraSnapViewController()
+            camera.delegate = self
+            // add gridview on camera
+            var gridView = GridView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight), columns: 3)
+            camera.view.addSubview(gridView)
+            self.present(camera, animated: true, completion: nil)
         }else{
             noCamera()
         }
@@ -55,11 +53,23 @@ class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, U
         alertVC.addAction(okActino)
         present(alertVC, animated: true, completion: nil)
     }
+  
+    func presentCropViewController() {
+        if self.postImageView.image != nil{
+            let image: UIImage = self.postImageView.image!
+            let cropViewController = CropViewController(image: image)
+            cropViewController.delegate = self
+            present(cropViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        // 'image' is the newly cropped version of the original image
+        self.postImageView.image = image
+    }
     
     @IBAction func choosePhoto_TouchUpInside(_ sender: Any) {
-        picker.allowsEditing = true
-        picker.sourceType = .photoLibrary
-        present(picker, animated: true, completion: nil)
+        presentCropViewController()
     }
  
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -115,6 +125,9 @@ class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, U
         }
         return randomString
     }
-    
+ 
+    func fetchImage (cameraSnapViewController : AGCameraSnapViewController, image : UIImage) {
+        self.postImageView.image = image
+    }
 }
 

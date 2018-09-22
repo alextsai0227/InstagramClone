@@ -1,10 +1,12 @@
 PODS:
+  - AGImageControls (0.1.7)
   - Bolts (1.8.3):
     - Bolts/AppLinks (= 1.8.3)
     - Bolts/Tasks (= 1.8.3)
   - Bolts/AppLinks (1.8.3):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.3)
+  - CropViewController (2.3.8)
   - FBSDKCoreKit (4.13.1):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.13.1):
@@ -83,6 +85,8 @@ PODS:
   - SDWebImage/Core (4.4.2)
 
 DEPENDENCIES:
+  - AGImageControls
+  - CropViewController
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
@@ -91,7 +95,9 @@ DEPENDENCIES:
   - SDWebImage (~> 4.0)
 
 SPEC CHECKSUMS:
+  AGImageControls: 15c987690db085429baf9c26e1031cb35b4bcd09
   Bolts: 52551f96df2f8aac6b4414347f3f8353a39f1966
+  CropViewController: 7be882b7d3fb3faef48a41924e80f689e9df2514
   FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
   FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
   Firebase: 6250071f0e2440a5c4c67b8cb6b868f868237ac3
@@ -111,6 +117,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
 
-PODFILE CHECKSUM: 496456999b7f47cefc394ae1ce9be5fcc83e2ce5
+PODFILE CHECKSUM: 1dd581fece2ab06730fa25eee509415ce5fd1f9b
 
 COCOAPODS: 1.0.1
