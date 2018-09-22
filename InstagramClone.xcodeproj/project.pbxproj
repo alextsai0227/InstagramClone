@@ -18,6 +18,9 @@
 		032C2BCD21513626005B5AB1 /* FeedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032C2BCB21513626005B5AB1 /* FeedCollectionViewCell.xib */; };
 		032C2BD221513E2E005B5AB1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2BD121513E2E005B5AB1 /* Post.swift */; };
 		032C2BD421513E41005B5AB1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2BD321513E41005B5AB1 /* User.swift */; };
+		035564452155ECB90029661A /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035564442155ECB90029661A /* CommentViewController.swift */; };
+		0355644B2155F3C70029661A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035564492155F3C70029661A /* CommentTableViewCell.swift */; };
+		0355644C2155F3C70029661A /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0355644A2155F3C70029661A /* CommentTableViewCell.xib */; };
 		035C5B502153A45A005F4094 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035C5B4F2153A45A005F4094 /* CoreImage.framework */; };
 		035C5B522153A4E1005F4094 /* EditPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035C5B512153A4E1005F4094 /* EditPhotoViewController.swift */; };
 		039FE2F921551864005B544A /* DisplayUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039FE2F821551864005B544A /* DisplayUsersTableViewController.swift */; };
@@ -41,6 +44,9 @@
 		032C2BCB21513626005B5AB1 /* FeedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedCollectionViewCell.xib; sourceTree = "<group>"; };
 		032C2BD121513E2E005B5AB1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		032C2BD321513E41005B5AB1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		035564442155ECB90029661A /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		035564492155F3C70029661A /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		0355644A2155F3C70029661A /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		035C5B4F2153A45A005F4094 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		035C5B512153A4E1005F4094 /* EditPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPhotoViewController.swift; sourceTree = "<group>"; };
 		039FE2F821551864005B544A /* DisplayUsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayUsersTableViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +75,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		035564462155ECDC0029661A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				03F7949E214A9BA000D36648 /* SignInViewController.swift */,
+				03039F53214A9F7600E358E0 /* SignUpViewController.swift */,
+				03039F55214AAF4400E358E0 /* HomeViewController.swift */,
+				03039F57214AAF5100E358E0 /* DiscoveryViewController.swift */,
+				03039F5D214AAF7B00E358E0 /* ProfileViewController.swift */,
+				03039F59214AAF5A00E358E0 /* CameraViewController.swift */,
+				035C5B512153A4E1005F4094 /* EditPhotoViewController.swift */,
+				03039F5B214AAF6500E358E0 /* ActivityViewController.swift */,
+				035564442155ECB90029661A /* CommentViewController.swift */,
+				039FE2F821551864005B544A /* DisplayUsersTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		035564472155F0410029661A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				032C2BD121513E2E005B5AB1 /* Post.swift */,
+				032C2BD321513E41005B5AB1 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		035564482155F0530029661A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				032C2BCA21513626005B5AB1 /* FeedCollectionViewCell.swift */,
+				032C2BCB21513626005B5AB1 /* FeedCollectionViewCell.xib */,
+				035564492155F3C70029661A /* CommentTableViewCell.swift */,
+				0355644A2155F3C70029661A /* CommentTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		03F7947E214A989700D36648 = {
 			isa = PBXGroup;
 			children = (
@@ -90,22 +133,12 @@
 		03F79489214A989800D36648 /* InstagramClone */ = {
 			isa = PBXGroup;
 			children = (
+				035564482155F0530029661A /* View */,
+				035564472155F0410029661A /* Model */,
+				035564462155ECDC0029661A /* Controller */,
 				03F7948A214A989800D36648 /* AppDelegate.swift */,
-				032C2BD121513E2E005B5AB1 /* Post.swift */,
-				032C2BD321513E41005B5AB1 /* User.swift */,
-				03F7949E214A9BA000D36648 /* SignInViewController.swift */,
-				03039F53214A9F7600E358E0 /* SignUpViewController.swift */,
-				03039F55214AAF4400E358E0 /* HomeViewController.swift */,
-				03039F57214AAF5100E358E0 /* DiscoveryViewController.swift */,
-				03039F59214AAF5A00E358E0 /* CameraViewController.swift */,
-				035C5B512153A4E1005F4094 /* EditPhotoViewController.swift */,
-				03039F5B214AAF6500E358E0 /* ActivityViewController.swift */,
-				032C2BCA21513626005B5AB1 /* FeedCollectionViewCell.swift */,
-				032C2BCB21513626005B5AB1 /* FeedCollectionViewCell.xib */,
-				03039F5D214AAF7B00E358E0 /* ProfileViewController.swift */,
 				03F79491214A989D00D36648 /* Assets.xcassets */,
 				03F7949C214A99AC00D36648 /* Start.storyboard */,
-				039FE2F821551864005B544A /* DisplayUsersTableViewController.swift */,
 				03F79493214A989D00D36648 /* LaunchScreen.storyboard */,
 				03F79496214A989D00D36648 /* Info.plist */,
 				03039F5F214BBEAF00E358E0 /* GoogleService-Info.plist */,
@@ -193,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03F79495214A989D00D36648 /* LaunchScreen.storyboard in Resources */,
+				0355644C2155F3C70029661A /* CommentTableViewCell.xib in Resources */,
 				03039F60214BBEB000E358E0 /* GoogleService-Info.plist in Resources */,
 				03F79492214A989D00D36648 /* Assets.xcassets in Resources */,
 				032C2BCD21513626005B5AB1 /* FeedCollectionViewCell.xib in Resources */,
@@ -254,12 +288,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				035564452155ECB90029661A /* CommentViewController.swift in Sources */,
 				03039F54214A9F7600E358E0 /* SignUpViewController.swift in Sources */,
 				03F7948B214A989800D36648 /* AppDelegate.swift in Sources */,
 				03F7949F214A9BA000D36648 /* SignInViewController.swift in Sources */,
 				03039F56214AAF4400E358E0 /* HomeViewController.swift in Sources */,
 				03039F5C214AAF6500E358E0 /* ActivityViewController.swift in Sources */,
 				032C2BCC21513626005B5AB1 /* FeedCollectionViewCell.swift in Sources */,
+				0355644B2155F3C70029661A /* CommentTableViewCell.swift in Sources */,
 				03039F58214AAF5100E358E0 /* DiscoveryViewController.swift in Sources */,
 				035C5B522153A4E1005F4094 /* EditPhotoViewController.swift in Sources */,
 				03039F5E214AAF7B00E358E0 /* ProfileViewController.swift in Sources */,
