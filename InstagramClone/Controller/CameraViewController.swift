@@ -15,12 +15,13 @@ import CropViewController
 class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, UINavigationControllerDelegate, AGCameraSnapViewControllerDelegate, CropViewControllerDelegate {
     @IBOutlet weak var postImageView: UIImageView!
     let picker = UIImagePickerController()
-    
+    let formatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
         postImageView.image = UIImage(named: "placeholder")
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     }
 
     // Screen width.
@@ -85,6 +86,7 @@ class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, U
     }
 
     @IBAction func savePost(_ sender: Any) {
+        let dateString = formatter.string(from: Date())
         let storageRef = FIRStorage.storage().reference(forURL: "gs://instagramclone-94872.appspot.com").child("post_image").child(randomString(length: 32))
         if let postImg = self.postImageView.image, let imageData = UIImageJPEGRepresentation(postImg, 0.1){
             storageRef.put(imageData, metadata: nil, completion: {(metadata, err) in
@@ -106,7 +108,8 @@ class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, U
                         
                         let postReference = ref.child("posts")
                         let newPostReference = postReference.child(uid!).childByAutoId()
-                        newPostReference.setValue(["username": username, "profileImgUrl": profileImg, "postImgUrl": postImageUrl,"like": "0"])
+                        
+                        newPostReference.setValue(["username": username, "profileImgUrl": profileImg, "postImgUrl": postImageUrl,"like": "0", "date": dateString])
                     }
                     
                 }, withCancel: { (error) in

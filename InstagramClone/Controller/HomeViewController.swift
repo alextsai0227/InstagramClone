@@ -22,72 +22,117 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let currentUserID = FIRAuth.auth()?.currentUser?.uid
     var currentUserName: String?
     var userWhoLikes: [String]?
+    let formatter = DateFormatter()
+    let databaseRef = FIRDatabase.database().reference()
     override func viewDidLoad() {
         super.viewDidLoad()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         self.feedCollectionView.register(UINib(nibName: "FeedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
         self.feedCollectionView.dataSource = self
         self.feedCollectionView.delegate = self
-        let databaseRef = FIRDatabase.database().reference()
+        
         if let uid = FIRAuth.auth()?.currentUser?.uid{
-            feedArray = []
-            // to get the users we are following
-            let myFollowingRef = databaseRef.child("followers").child(uid)
-            myFollowingRef.observeSingleEvent(of: .value, with: { (followingSnapshot) in
-                // store values in dictionary
-                
-                if let followingDictionary = followingSnapshot.value as? NSDictionary{
-                    for(ids) in followingDictionary{
-                        print(ids.value)
-                        let follwerDic = ids.value as? NSDictionary
-                        // to get the users who are following's post
-                        let usersPostRef = databaseRef.child("posts").child(follwerDic!["id"] as! String)
-                        print("========test===========")
-                        print(ids.value)
-                        
-                        usersPostRef.observeSingleEvent(of: .value, with: {(postSnapshot) in
-                            // store values in a dictionary
-                            if let postDictionary = postSnapshot.value as? NSDictionary{
-                                for (post) in postDictionary{
-                                    let result = post.value as! [String: Any]
-                                    print("=======loook==========")
-                                    print(result["users_like"])
-                                    var users_like = result["users_like"] as? NSDictionary
-                                    var num_users_like = 0
-                                    if (users_like != nil) {
-                                        num_users_like = (users_like?.count)!
-                                    }
-                                    guard let profileUrl = result["profileImgUrl"]
-                                        else{return}
-                                    guard let username = result["username"]
-                                        else{return}
-                                    guard let postUrl = result["postImgUrl"]
-                                        else{return}
-                                    guard let likeNum = result["like"]
-                                        else{return}
-                                    //                            usersPostRef.child(post.key as! String).child("users_like").child("users").observeSingleEvent(of: .value, with: {(userslikeSnapshot) in
-                                    //                                print("==========seee==========")
-                                    //                                print(userslikeSnapshot.value)
-                                    //                            })
-                                    //                            print("==========postttttt==========")
-                                    let like_num = likeNum as? String
-                                    self.feedArray.append(Post(postUrl: postUrl as! String, profileUrl: profileUrl as! String, username: username as! String, likeImg: UIImage(named: "icons8-heart-outline-30")!, postID: post.key as! String, like_num: Int(like_num!)!, uid: follwerDic!["id"] as! String, usersLike: num_users_like))
-                                }
-                                self.feedCollectionView.reloadData()
-                            }
-                            
-                        }, withCancel: { (error) in
-                            print(error)
-                        })
-                    }
-                }
-            }, withCancel: { (error) in
-                print(error)
-            })
-
+            // fetch own post
+            self.fetchPostUsers(uid: uid, databaseRef: databaseRef, follwerDic: ["id" : uid])
+            
+            // fetch post from who you follow
+            fetchFollowers(uid: uid, databaseRef: databaseRef)
         }
        
         
         // Do any additional setup after loading the view.
+    }
+    
+    func fetchFollowers(uid: String, databaseRef: FIRDatabaseReference) {
+        // to get the users we are following
+        let myFollowingRef = databaseRef.child("followers").child(uid)
+        myFollowingRef.observeSingleEvent(of: .value, with: { (followingSnapshot) in
+            // store values in dictionary
+            
+            if let followingDictionary = followingSnapshot.value as? NSDictionary{
+                for(ids) in followingDictionary{
+                    print(ids.value)
+                    let follwerDic = ids.value as? NSDictionary
+                    self.fetchPostUsers(uid: uid, databaseRef: databaseRef, follwerDic: follwerDic!)
+                }
+            }
+        }, withCancel: { (error) in
+            print(error)
+        })
+    }
+    
+    func fetchPostUsers(uid: String, databaseRef: FIRDatabaseReference, follwerDic: NSDictionary) {
+        // to get the users who are following's post
+        let usersPostRef = databaseRef.child("posts").child(follwerDic["id"] as! String)
+        
+        usersPostRef.observeSingleEvent(of: .value, with: {(postSnapshot) in
+            
+            // store values in a dictionary
+            if let postDictionary = postSnapshot.value as? NSDictionary{
+                for (post) in postDictionary{
+                    let result = post.value as! [String: Any]
+                    print("=======loook==========")
+                    print(result["users_like"])
+                    var users_like = result["users_like"] as? NSDictionary
+                    var num_users_like = 0
+                    if (users_like != nil) {
+                        num_users_like = (users_like?.count)!
+                    }
+                    guard let profileUrl = result["profileImgUrl"]
+                        else{return}
+                    guard let username = result["username"]
+                        else{return}
+                    guard let postUrl = result["postImgUrl"]
+                        else{return}
+                    guard let likeNum = result["like"]
+                        else{return}
+                    guard let date = result["date"]
+                        else{return}
+                    
+                    let like_num = likeNum as? String
+                    self.feedArray.append(Post(postUrl: postUrl as! String, profileUrl: profileUrl as! String, username: username as! String, likeImg: UIImage(named: "icons8-heart-outline-30")!, postID: post.key as! String, like_num: Int(like_num!)!, uid: follwerDic["id"] as! String, usersLike: num_users_like, date: date as! String))
+                    // sort the post by date
+                    self.feedArray = self.sortFeedArray(feedArray: self.feedArray)
+                }
+                
+                self.feedCollectionView.reloadData()
+            }
+            
+        }, withCancel: { (error) in
+            print(error)
+        })
+    }
+    
+    func sortFeedArray(feedArray: [Post]) -> [Post]{
+        // sort the post by date
+        let feedDates: [Date] = feedArray.map { formatter.date(from: $0.date)!
+        }
+        let feedTuples = zip(feedArray, feedDates)
+        let sortedfeedTuples = feedTuples.sorted { $0.1 > $1.1}
+        let (feedArray, date) = unzip(array: sortedfeedTuples)
+
+        return feedArray
+    }
+    
+    func unzip<T, U>(array: [(T, U)]) -> ([T], [U]) {
+        var t = Array<T>()
+        var u = Array<U>()
+        for (a, b) in array {
+            t.append(a)
+            u.append(b)
+        }
+        return (t, u)
+    }
+    
+    @IBAction func refreshPost(_ sender: Any) {
+        self.feedArray = []
+        if let uid = FIRAuth.auth()?.currentUser?.uid{
+            // fetch own post
+            self.fetchPostUsers(uid: uid, databaseRef: databaseRef, follwerDic: ["id" : uid])
+            
+            // fetch post from who you follow
+            fetchFollowers(uid: uid, databaseRef: databaseRef)
+        }
     }
     
     @IBAction func logout_TouchUpInside(_ sender: Any) {

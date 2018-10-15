@@ -318,6 +318,11 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Refresh" id="v6v-3Y-O9A">
+                            <connections>
+                                <action selector="refreshPost:" destination="hER-ot-k8O" id="AE7-aZ-0Eo"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="feedCollectionView" destination="ffq-p0-sef" id="uKv-wL-l0o"/>
