@@ -31,51 +31,55 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if let uid = FIRAuth.auth()?.currentUser?.uid{
             feedArray = []
             // to get the users we are following
-            let myFollowingRef = databaseRef.child("following").child(uid)
+            let myFollowingRef = databaseRef.child("followers").child(uid)
             myFollowingRef.observeSingleEvent(of: .value, with: { (followingSnapshot) in
                 // store values in dictionary
-                let followingDictionary = followingSnapshot.value as! NSDictionary
-                for(ids) in followingDictionary{
-                    print(ids.value)
-                    // to get the users who are following's post
-                    let usersPostRef = databaseRef.child("posts").child(ids.value as! String)
-                    print("========test===========")
-                    print(ids.value)
-                    
-                    usersPostRef.observeSingleEvent(of: .value, with: {(postSnapshot) in
-                        // store values in a dictionary
-                        let postDictionary = postSnapshot.value as! NSDictionary
-                        for (post) in postDictionary{
-                            let result = post.value as! [String: Any]
-                            print("=======loook==========")
-                            print(result["users_like"])
-                            var users_like = result["users_like"] as? NSDictionary
-                            var num_users_like = 0
-                            if (users_like != nil) {
-                                num_users_like = (users_like?.count)!
-                            }
-                            guard let profileUrl = result["profileImgUrl"]
-                                else{return}
-                            guard let username = result["username"]
-                                else{return}
-                            guard let postUrl = result["postImgUrl"]
-                                else{return}
-                            guard let likeNum = result["like"]
-                                else{return}
-//                            usersPostRef.child(post.key as! String).child("users_like").child("users").observeSingleEvent(of: .value, with: {(userslikeSnapshot) in
-//                                print("==========seee==========")
-//                                print(userslikeSnapshot.value)
-//                            })
-//                            print("==========postttttt==========")
-                            let like_num = likeNum as? String
-                            self.feedArray.append(Post(postUrl: postUrl as! String, profileUrl: profileUrl as! String, username: username as! String, likeImg: UIImage(named: "icons8-heart-outline-30")!, postID: post.key as! String, like_num: Int(like_num!)!, uid: ids.value as! String, usersLike: num_users_like))
-                        }
-                        self.feedCollectionView.reloadData()
-                    }, withCancel: { (error) in
-                        print(error)
-                    })
-                }
                 
+                if let followingDictionary = followingSnapshot.value as? NSDictionary{
+                    for(ids) in followingDictionary{
+                        print(ids.value)
+                        let follwerDic = ids.value as? NSDictionary
+                        // to get the users who are following's post
+                        let usersPostRef = databaseRef.child("posts").child(follwerDic!["id"] as! String)
+                        print("========test===========")
+                        print(ids.value)
+                        
+                        usersPostRef.observeSingleEvent(of: .value, with: {(postSnapshot) in
+                            // store values in a dictionary
+                            if let postDictionary = postSnapshot.value as? NSDictionary{
+                                for (post) in postDictionary{
+                                    let result = post.value as! [String: Any]
+                                    print("=======loook==========")
+                                    print(result["users_like"])
+                                    var users_like = result["users_like"] as? NSDictionary
+                                    var num_users_like = 0
+                                    if (users_like != nil) {
+                                        num_users_like = (users_like?.count)!
+                                    }
+                                    guard let profileUrl = result["profileImgUrl"]
+                                        else{return}
+                                    guard let username = result["username"]
+                                        else{return}
+                                    guard let postUrl = result["postImgUrl"]
+                                        else{return}
+                                    guard let likeNum = result["like"]
+                                        else{return}
+                                    //                            usersPostRef.child(post.key as! String).child("users_like").child("users").observeSingleEvent(of: .value, with: {(userslikeSnapshot) in
+                                    //                                print("==========seee==========")
+                                    //                                print(userslikeSnapshot.value)
+                                    //                            })
+                                    //                            print("==========postttttt==========")
+                                    let like_num = likeNum as? String
+                                    self.feedArray.append(Post(postUrl: postUrl as! String, profileUrl: profileUrl as! String, username: username as! String, likeImg: UIImage(named: "icons8-heart-outline-30")!, postID: post.key as! String, like_num: Int(like_num!)!, uid: follwerDic!["id"] as! String, usersLike: num_users_like))
+                                }
+                                self.feedCollectionView.reloadData()
+                            }
+                            
+                        }, withCancel: { (error) in
+                            print(error)
+                        })
+                    }
+                }
             }, withCancel: { (error) in
                 print(error)
             })
@@ -218,20 +222,12 @@ extension HomeViewController: FeedCollectionViewCellDelegate{
         let usersLikeRef = FIRDatabase.database().reference().child("posts").child(feedArray[index].uid).child(feedArray[index].postID).child("users_like");
 
         usersLikeRef.observeSingleEvent(of: .value, with: {(usersSnapshot) in
-            let users = usersSnapshot.value as! NSDictionary
-            displayUsersVC?.list = users.allValues as! [String]
-            print(users.allValues)
-            print(displayUsersVC?.list)
-            self.present(naviDisplayUsersVC, animated: true, completion: nil)
+            if let users = usersSnapshot.value as? NSDictionary {
+                displayUsersVC?.list = users.allValues as? [String]
+                print(users.allValues)
+                print(displayUsersVC?.list)
+                self.present(naviDisplayUsersVC, animated: true, completion: nil)
+            }
         })
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        
-//        let navVC = segue.destination as? UINavigationController
-//        
-//        let tableVC = navVC?.viewControllers.first as! DisplayUsersTableViewController
-//        
-//        tableVC.list = self.userWhoLikes
-//    }
 }

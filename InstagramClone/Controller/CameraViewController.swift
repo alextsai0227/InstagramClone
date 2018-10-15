@@ -38,7 +38,8 @@ class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, U
             let camera = AGCameraSnapViewController()
             camera.delegate = self
             // add gridview on camera
-            var gridView = GridView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight), columns: 3)
+            let gridView = GridView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight), columns: 3)
+            gridView.isUserInteractionEnabled = false
             camera.view.addSubview(gridView)
             self.present(camera, animated: true, completion: nil)
         }else{
@@ -94,17 +95,20 @@ class CameraViewController: UIViewController ,UIImagePickerControllerDelegate, U
                 let uid = FIRAuth.auth()?.currentUser?.uid
                 let ref = FIRDatabase.database().reference()
                 let userReference = ref.child("users").child(uid!)
+                print(uid!)
                 userReference.observe(.value, with: {(userSnapshot) in
                     // store values in a dictionary
-                    let userDictionary = userSnapshot.value as! NSDictionary
-                    print(userDictionary)
+                    if let userDictionary = userSnapshot.value as? NSDictionary{
+                        print(userDictionary)
+                        
+                        let username = userDictionary["username"] as? String ?? ""
+                        let profileImg = userDictionary["profileImgUrl"] as? String ?? ""
+                        
+                        let postReference = ref.child("posts")
+                        let newPostReference = postReference.child(uid!).childByAutoId()
+                        newPostReference.setValue(["username": username, "profileImgUrl": profileImg, "postImgUrl": postImageUrl,"like": "0"])
+                    }
                     
-                    let username = userDictionary["username"] as? String ?? ""
-                    let profileImg = userDictionary["profileImgUrl"] as? String ?? ""
-                    
-                    let postReference = ref.child("posts")
-                    let newPostReference = postReference.child(uid!).childByAutoId()
-                    newPostReference.setValue(["username": username, "profileImgUrl": profileImg, "postImgUrl": postImageUrl,"like": "0"])
                 }, withCancel: { (error) in
                     print(error)
                 })

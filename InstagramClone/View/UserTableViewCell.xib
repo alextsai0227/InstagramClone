@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="UserTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTableViewCell" rowHeight="222" id="KGk-i7-Jjw" customClass="UserTableViewCell" customModule="InstagramClone" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="546" height="222"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="546" height="221.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YH0-8L-BFv">
+                        <rect key="frame" x="20" y="10" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="Jzm-eG-CrH"/>
+                            <constraint firstAttribute="height" constant="80" id="K06-f0-ZhR"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1i-6t-EUt">
+                        <rect key="frame" x="116" y="39.5" width="100" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="GiI-ta-a06"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LD6-rG-emX">
+                        <rect key="frame" x="232" y="35" width="44" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="Ncw-dC-bBr"/>
+                        </constraints>
+                        <state key="normal" title="Follow"/>
+                        <connections>
+                            <action selector="followBtn_TouchUpInside:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FaP-5G-Hsd"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="YH0-8L-BFv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="0hG-gf-rQ5"/>
+                    <constraint firstItem="YH0-8L-BFv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ASd-KK-OFH"/>
+                    <constraint firstItem="Q1i-6t-EUt" firstAttribute="leading" secondItem="YH0-8L-BFv" secondAttribute="trailing" constant="16" id="Juq-p1-Bi1"/>
+                    <constraint firstItem="Q1i-6t-EUt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="a3p-Nt-92Y"/>
+                    <constraint firstItem="YH0-8L-BFv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="eSD-gS-dP7"/>
+                    <constraint firstItem="LD6-rG-emX" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="khD-0y-tc4"/>
+                    <constraint firstAttribute="bottom" secondItem="YH0-8L-BFv" secondAttribute="bottom" constant="10" id="v5y-54-BU6"/>
+                    <constraint firstItem="LD6-rG-emX" firstAttribute="leading" secondItem="Q1i-6t-EUt" secondAttribute="trailing" constant="16" id="zXe-W4-ufi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="followBtn" destination="LD6-rG-emX" id="zRk-1n-d68"/>
+                <outlet property="userImageView" destination="YH0-8L-BFv" id="kac-eq-Q5W"/>
+                <outlet property="userName" destination="Q1i-6t-EUt" id="0uu-iy-CLT"/>
+            </connections>
+            <point key="canvasLocation" x="83.200000000000003" y="163.71814092953525"/>
+        </tableViewCell>
+    </objects>
+</document>

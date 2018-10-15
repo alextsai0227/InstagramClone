@@ -12,7 +12,6 @@
     func likeBtnControl(cell: FeedCollectionViewCell)
     func commentBtnControl(cell: FeedCollectionViewCell)
     func displayBtnControl(cell: FeedCollectionViewCell)
-    //@objc 為了可以做optional
 }
 
 import UIKit

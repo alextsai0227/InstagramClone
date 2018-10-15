@@ -52,7 +52,7 @@ class SignUpViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func signUpBtn_TouchUpInside(_ sender: Any) {
-        if userNameTextFIeld.text != nil &&  emailTextField.text != nil && passwordTextField.text != nil {
+        if userNameTextFIeld.text != nil &&  emailTextField.text != nil && passwordTextField.text != nil && selectedImage != nil{
             FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
                 if error != nil {
                     print(error!.localizedDescription)
