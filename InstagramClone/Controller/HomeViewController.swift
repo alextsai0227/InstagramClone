@@ -45,7 +45,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func fetchFollowers(uid: String, databaseRef: FIRDatabaseReference) {
         // to get the users we are following
-        let myFollowingRef = databaseRef.child("followers").child(uid)
+        let myFollowingRef = databaseRef.child("following").child(uid)
         myFollowingRef.observeSingleEvent(of: .value, with: { (followingSnapshot) in
             // store values in dictionary
             
@@ -71,9 +71,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             if let postDictionary = postSnapshot.value as? NSDictionary{
                 for (post) in postDictionary{
                     let result = post.value as! [String: Any]
-                    print("=======loook==========")
-                    print(result["users_like"])
-                    var users_like = result["users_like"] as? NSDictionary
+
+                    let users_like = result["users_like"] as? NSDictionary
                     var num_users_like = 0
                     if (users_like != nil) {
                         num_users_like = (users_like?.count)!
@@ -109,7 +108,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         let feedTuples = zip(feedArray, feedDates)
         let sortedfeedTuples = feedTuples.sorted { $0.1 > $1.1}
-        let (feedArray, date) = unzip(array: sortedfeedTuples)
+        let (feedArray, _) = unzip(array: sortedfeedTuples)
 
         return feedArray
     }
@@ -189,6 +188,9 @@ extension HomeViewController: FeedCollectionViewCellDelegate{
         
         let index = (self.feedCollectionView.indexPath(for: cell)?.row)!
         
+        // get the api to save data into activity
+        let activityRef = FIRDatabase.database().reference().child("a1")
+        
         // find who likes or dislikes the post
         let userRef = FIRDatabase.database().reference().child("users").child(currentUserID!)
         userRef.observeSingleEvent(of: .value, with: {(usersSnapshot) in
@@ -198,6 +200,10 @@ extension HomeViewController: FeedCollectionViewCellDelegate{
         
         // postRef
         let postRef = FIRDatabase.database().reference().child("posts").child(feedArray[index].uid).child(feedArray[index].postID);
+        
+        // store activity
+        let dateString = formatter.string(from: Date())
+        activityRef.child(feedArray[index].uid).child(feedArray[index].postID).setValue(["type": "L","uid": currentUserID!, "name": currentUserName, "date": dateString, "postID": feedArray[index].postID])
         
         // usersLikeRef
         let usersLikeRef = postRef.child("users_like")
@@ -269,8 +275,6 @@ extension HomeViewController: FeedCollectionViewCellDelegate{
         usersLikeRef.observeSingleEvent(of: .value, with: {(usersSnapshot) in
             if let users = usersSnapshot.value as? NSDictionary {
                 displayUsersVC?.list = users.allValues as? [String]
-                print(users.allValues)
-                print(displayUsersVC?.list)
                 self.present(naviDisplayUsersVC, animated: true, completion: nil)
             }
         })

@@ -210,25 +210,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nTN-ac-OUk">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <rect key="frame" x="0.0" y="144" width="375" height="585"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="iUz-jX-bFP" id="dBZ-Ye-a4Q"/>
                                     <outlet property="delegate" destination="iUz-jX-bFP" id="srB-Z6-Ktx"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Oqb-lf-iMY">
+                                <rect key="frame" x="0.0" y="88" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Oqb-lf-iMY" firstAttribute="top" secondItem="neN-rh-kyu" secondAttribute="top" id="0vy-tw-uP1"/>
                             <constraint firstItem="nTN-ac-OUk" firstAttribute="leading" secondItem="neN-rh-kyu" secondAttribute="leading" id="4mZ-VP-Gmq"/>
                             <constraint firstItem="nTN-ac-OUk" firstAttribute="trailing" secondItem="neN-rh-kyu" secondAttribute="trailing" id="Hc6-Td-V0A"/>
-                            <constraint firstItem="nTN-ac-OUk" firstAttribute="top" secondItem="neN-rh-kyu" secondAttribute="top" id="VdS-5L-nlE"/>
+                            <constraint firstItem="nTN-ac-OUk" firstAttribute="top" secondItem="Oqb-lf-iMY" secondAttribute="bottom" id="Qlt-On-22C"/>
+                            <constraint firstItem="Oqb-lf-iMY" firstAttribute="leading" secondItem="neN-rh-kyu" secondAttribute="leading" id="WcT-J2-o5G"/>
+                            <constraint firstItem="Oqb-lf-iMY" firstAttribute="trailing" secondItem="neN-rh-kyu" secondAttribute="trailing" id="pjE-Qb-OHW"/>
                             <constraint firstAttribute="bottomMargin" secondItem="nTN-ac-OUk" secondAttribute="bottom" id="wms-Im-0Vw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="neN-rh-kyu"/>
                     </view>
                     <navigationItem key="navigationItem" id="7Fd-Hv-4aU"/>
                     <connections>
+                        <outlet property="searchBar" destination="Oqb-lf-iMY" id="CgN-Vl-Qgk"/>
                         <outlet property="userTableView" destination="nTN-ac-OUk" id="rxW-UH-gRR"/>
                     </connections>
                 </viewController>
