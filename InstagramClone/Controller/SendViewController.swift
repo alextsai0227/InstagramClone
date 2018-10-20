@@ -83,6 +83,9 @@ class SendViewController: UIViewController, MCSessionDelegate {
             print("Not Connected:\(peerID.displayName)")
         }
     }
+    @IBAction func backToProfilePage(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         

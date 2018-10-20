@@ -97,6 +97,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     //fetching posts from the user.
     func fetchPostUsers(uid: String, databaseRef: FIRDatabaseReference, follwerDic: NSDictionary) {
+        self.feedArray = []
         // to get the users who are following's post
         let usersPostRef = databaseRef.child("posts").child(follwerDic["id"] as! String)
         
@@ -194,6 +195,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         sendVC.url = self.feedArray[indexPath.row].postUrl
         self.present(sendVC, animated: true, completion: nil)
     }
+
+    @IBAction func refreshPost(_ sender: Any) {
+        self.fetchPostUsers(uid: uid!, databaseRef: databaseRef, follwerDic: ["id" : uid!])
+        self.fetchingDetails(uid: uid!, databaseRef: databaseRef)
+    }
+    
     
     //to display the user profile picture.
     func displayProfileImage(uid: String, databaseRef: FIRDatabaseReference){
